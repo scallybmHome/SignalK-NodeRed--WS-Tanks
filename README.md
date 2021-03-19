@@ -61,5 +61,5 @@ _Flow_
 
 11 - This node looks at the update time of the last piece of information it has recieved and makes an dashboard LED red or green.  This would be better on a timer - next rev.
 
-12 - These nodes combine the tank current values with the tank specific infomraiton to display guages that change colour when you are about to run out of something.
+12 - These nodes combine the tank currentlevel values with the tank specific infomraiton to display guages that change colour when you are about to run out of something.
 The nodes aport processing if the information is not for their paired guage so a delta expressed on the fuel tank does not cause all the gauges to be redrawn.
