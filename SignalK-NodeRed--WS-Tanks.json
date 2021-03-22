@@ -1,73 +1,25 @@
 [
     {
-        "id": "3ef1c926.ba7526",
-        "type": "websocket in",
-        "z": "8bdea88.abe9658",
-        "name": "",
-        "server": "",
-        "client": "f35e03a1.d409e",
-        "x": 220,
-        "y": 220,
-        "wires": [
-            [
-                "3ec9d9d6.6d1a76"
-            ]
-        ]
-    },
-    {
-        "id": "fa5ec11.4c3e64",
-        "type": "switch",
-        "z": "8bdea88.abe9658",
-        "name": "Hello?",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "cont",
-                "v": "\"signalk-server\"",
-                "vt": "str"
-            },
-            {
-                "t": "else"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 730,
-        "y": 220,
-        "wires": [
-            [
-                "b28b4911.8890f8",
-                "c1b66747.2e1928"
-            ],
-            [
-                "1cdf665b.f9d81a"
-            ]
-        ]
-    },
-    {
-        "id": "1cdf665b.f9d81a",
+        "id": "63cc2dcb.d9b554",
         "type": "json",
-        "z": "8bdea88.abe9658",
+        "z": "cf96057a.038f88",
         "name": "",
         "property": "payload",
         "action": "obj",
         "pretty": false,
-        "x": 890,
-        "y": 220,
+        "x": 910,
+        "y": 280,
         "wires": [
             [
-                "e4ee8028.95dbc",
-                "6cab1446.eebddc"
+                "88fd24e8.13b248",
+                "cec864ad.eba798"
             ]
         ]
     },
     {
-        "id": "5f797a98.a87954",
+        "id": "4f18d0b3.155d6",
         "type": "debug",
-        "z": "8bdea88.abe9658",
-        "d": true,
+        "z": "cf96057a.038f88",
         "name": "Debug point to look at the parsed deltas",
         "active": false,
         "tosidebar": true,
@@ -77,41 +29,32 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1620,
-        "y": 220,
+        "x": 1640,
+        "y": 240,
         "wires": []
     },
     {
-        "id": "49f06ba5.4ceb44",
-        "type": "websocket out",
-        "z": "8bdea88.abe9658",
-        "name": "",
-        "server": "",
-        "client": "f35e03a1.d409e",
-        "x": 1260,
-        "y": 60,
-        "wires": []
-    },
-    {
-        "id": "b7ea93f4.a8669",
+        "id": "d3ba4d95.5e7c5",
         "type": "function",
-        "z": "8bdea88.abe9658",
+        "z": "cf96057a.038f88",
         "name": "Check the times function - making sure readings are current",
-        "func": "\nreadingTime =new Date(msg.payload.updates[0].timestamp).getTime();\nif (flow.get(\"locals.lastGoodReading\") < readingTime )\n{\n    flow.set(\"locals.lastGoodReading\",readingTime);\n}\nnode.done;\n\nreturn;",
+        "func": "\nreadingTime =new Date(msg.timestamp).getTime();\nif (flow.get(\"locals.lastGoodReading\") < readingTime )\n{\n    flow.set(\"locals.lastGoodReading\",readingTime);\n}\n//node.done;\n\nmsg.debug0 = readingTime;\nmsg.debug1 = msg.timestamp;\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 1420,
-        "y": 400,
+        "x": 1440,
+        "y": 520,
         "wires": [
-            []
+            [
+                "84e42de6.43255"
+            ]
         ]
     },
     {
-        "id": "dffde80f.011018",
+        "id": "5f6b93b6.74c0ac",
         "type": "ui_gauge",
-        "z": "8bdea88.abe9658",
+        "z": "cf96057a.038f88",
         "name": "",
         "group": "5efb96f.ad0a568",
         "order": 1,
@@ -130,14 +73,14 @@
         ],
         "seg1": "",
         "seg2": "",
-        "x": 1730,
-        "y": 480,
+        "x": 1750,
+        "y": 600,
         "wires": []
     },
     {
-        "id": "19782ce3.c54e13",
+        "id": "da9784b0.77a498",
         "type": "ui_gauge",
-        "z": "8bdea88.abe9658",
+        "z": "cf96057a.038f88",
         "name": "",
         "group": "5efb96f.ad0a568",
         "order": 3,
@@ -156,14 +99,14 @@
         ],
         "seg1": "",
         "seg2": "",
-        "x": 1730,
-        "y": 520,
+        "x": 1750,
+        "y": 640,
         "wires": []
     },
     {
-        "id": "dac22c38.b454f",
+        "id": "3a57519e.6cecbe",
         "type": "ui_gauge",
-        "z": "8bdea88.abe9658",
+        "z": "cf96057a.038f88",
         "name": "",
         "group": "5efb96f.ad0a568",
         "order": 4,
@@ -182,14 +125,14 @@
         ],
         "seg1": "",
         "seg2": "",
-        "x": 1730,
-        "y": 560,
+        "x": 1750,
+        "y": 680,
         "wires": []
     },
     {
-        "id": "f8ff0076.91c38",
+        "id": "309a63a1.84f35c",
         "type": "ui_gauge",
-        "z": "8bdea88.abe9658",
+        "z": "cf96057a.038f88",
         "name": "",
         "group": "c516dbf3.170108",
         "order": 6,
@@ -208,14 +151,14 @@
         ],
         "seg1": "33",
         "seg2": "66",
-        "x": 1730,
-        "y": 600,
+        "x": 1750,
+        "y": 720,
         "wires": []
     },
     {
-        "id": "2d20ac1f.0e0234",
+        "id": "187c4a26.4a7e96",
         "type": "ui_gauge",
-        "z": "8bdea88.abe9658",
+        "z": "cf96057a.038f88",
         "name": "",
         "group": "c516dbf3.170108",
         "order": 6,
@@ -234,14 +177,14 @@
         ],
         "seg1": "",
         "seg2": "",
-        "x": 1730,
-        "y": 640,
+        "x": 1750,
+        "y": 760,
         "wires": []
     },
     {
-        "id": "ca82c03e.ef8aa",
+        "id": "a0adb310.f6701",
         "type": "ui_gauge",
-        "z": "8bdea88.abe9658",
+        "z": "cf96057a.038f88",
         "name": "",
         "group": "4731fe37.3174b",
         "order": 6,
@@ -260,16 +203,16 @@
         ],
         "seg1": "",
         "seg2": "",
-        "x": 1730,
-        "y": 680,
+        "x": 1750,
+        "y": 800,
         "wires": []
     },
     {
-        "id": "2684a329.d67c1c",
+        "id": "5b9ebdc7.4292a4",
         "type": "switch",
-        "z": "8bdea88.abe9658",
+        "z": "cf96057a.038f88",
         "name": "Sort between capacity and currentLevel",
-        "property": "payload.updates[0].values[0].path",
+        "property": "topic",
         "propertyType": "msg",
         "rules": [
             {
@@ -286,130 +229,58 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 600,
-        "y": 340,
+        "x": 620,
+        "y": 460,
         "wires": [
             [
-                "4541ce3f.2ed4e"
+                "de2d130e.44ca1"
             ],
             [
-                "9f8633d0.3e5b9",
-                "b7ea93f4.a8669",
-                "90e89d4c.91154",
-                "83537c16.c2ba4",
-                "c49a8c6f.afe9a",
-                "4ceab297.09683c",
-                "be397dae.f07a8",
-                "a9e26204.5970d"
+                "1f692fb6.597c2",
+                "d3ba4d95.5e7c5",
+                "4797733c.b32cec",
+                "90b7cc2d.8bb9a",
+                "3da29a79.6c2996",
+                "38b0392c.11c3b6",
+                "1e2bcc37.54aff4",
+                "2a8f1e18.ff6172"
             ]
         ]
     },
     {
-        "id": "e4ee8028.95dbc",
+        "id": "88fd24e8.13b248",
         "type": "link out",
-        "z": "8bdea88.abe9658",
+        "z": "cf96057a.038f88",
         "name": "",
         "links": [
-            "a968f2d7.fd908"
+            "1a65f792.f1a848"
         ],
-        "x": 995,
-        "y": 180,
+        "x": 1775,
+        "y": 280,
         "wires": []
     },
     {
-        "id": "a968f2d7.fd908",
+        "id": "1a65f792.f1a848",
         "type": "link in",
-        "z": "8bdea88.abe9658",
+        "z": "cf96057a.038f88",
         "name": "",
         "links": [
-            "e4ee8028.95dbc"
+            "88fd24e8.13b248"
         ],
-        "x": 15,
-        "y": 340,
+        "x": 35,
+        "y": 460,
         "wires": [
             [
-                "e65295bf.5580e8"
+                "311dd5e3.db3daa"
             ]
         ]
     },
     {
-        "id": "b28b4911.8890f8",
-        "type": "change",
-        "z": "8bdea88.abe9658",
-        "name": "Subscribe JSON",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "{\"context\":\"vessels.self\",\"subscribe\":[{\"path\":\"tanks.*\",\"period\":60000}]}",
-                "tot": "json"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 920,
-        "y": 60,
-        "wires": [
-            [
-                "49f06ba5.4ceb44"
-            ]
-        ]
-    },
-    {
-        "id": "e96ce651.e02e48",
-        "type": "comment",
-        "z": "8bdea88.abe9658",
-        "name": "You have to subscribe to a data leaf OR to a wildcard  'tanks' does not work",
-        "info": "",
-        "x": 1100,
-        "y": 20,
-        "wires": []
-    },
-    {
-        "id": "c4e4a9d.fcbdc58",
-        "type": "comment",
-        "z": "8bdea88.abe9658",
-        "name": "Node-Red ism the _session data is NOT carried in the msg",
-        "info": "Leaving the _session data in the message confuses the WS nodes and no data is passed.",
-        "x": 550,
-        "y": 180,
-        "wires": []
-    },
-    {
-        "id": "3ec9d9d6.6d1a76",
-        "type": "change",
-        "z": "8bdea88.abe9658",
-        "name": "",
-        "rules": [
-            {
-                "t": "delete",
-                "p": "_session",
-                "pt": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 560,
-        "y": 220,
-        "wires": [
-            [
-                "fa5ec11.4c3e64"
-            ]
-        ]
-    },
-    {
-        "id": "e65295bf.5580e8",
+        "id": "311dd5e3.db3daa",
         "type": "switch",
-        "z": "8bdea88.abe9658",
+        "z": "cf96057a.038f88",
         "name": "Only take the data from the YDEN interface",
-        "property": "payload.updates[0].$source",
+        "property": "$source",
         "propertyType": "msg",
         "rules": [
             {
@@ -421,37 +292,37 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 230,
-        "y": 340,
+        "x": 250,
+        "y": 460,
         "wires": [
             [
-                "2684a329.d67c1c"
+                "5b9ebdc7.4292a4"
             ]
         ]
     },
     {
-        "id": "4541ce3f.2ed4e",
+        "id": "de2d130e.44ca1",
         "type": "function",
-        "z": "8bdea88.abe9658",
+        "z": "cf96057a.038f88",
         "name": "Update the capacity values for the tanks",
-        "func": "if ( msg.payload.updates[0].$source.includes(flow.get(\"freshwater[0].SerialNo\")) )\n{\n    flow.set(\"freshwater[0].capacity\", msg.payload.updates[0].values[0].value);\n}\n\nif (msg.payload.updates[0].$source.includes(flow.get(\"freshwater[1].SerialNo\")) )\n{\n    flow.set(\"freshwater[1].capacity\", msg.payload.updates[0].values[0].value);\n}\n\nif ( msg.payload.updates[0].$source.includes(flow.get(\"freshwater[2].SerialNo\")) )\n{\n    flow.set(\"freshwater[2].capacity\", msg.payload.updates[0].values[0].value);\n}\n\nif ( msg.payload.updates[0].$source.includes(flow.get(\"blackwater[0].SerialNo\")) )\n{\n    flow.set(\"blackwater[0].capacity\", msg.payload.updates[0].values[0].value);\n}\n\nif ( msg.payload.updates[0].$source.includes(flow.get(\"blackwater[1].SerialNo\")) )\n{\n    flow.set(\"blackwater[1].capacity\", msg.payload.updates[0].values[0].value);\n}\n\nif ( msg.payload.updates[0].$source.includes(flow.get(\"fuel[0].SerialNo\")) )\n{\n    flow.set(\"fuel[0].capacity\", msg.payload.updates[0].values[0].value);\n}\n\nreturn msg;\n\npayload.updates[0].$source",
+        "func": "if ( msg.$source.includes(flow.get(\"freshwater[0].SerialNo\")) )\n{\n    flow.set(\"freshwater[0].capacity\", msg.payload);\n}\n\nif (msg.$source.includes(flow.get(\"freshwater[1].SerialNo\")) )\n{\n    flow.set(\"freshwater[1].capacity\", msg.payload);\n}\n\nif ( msg.$source.includes(flow.get(\"freshwater[2].SerialNo\")) )\n{\n    flow.set(\"freshwater[2].capacity\", msg.payload);\n}\n\nif ( msg.$source.includes(flow.get(\"blackwater[0].SerialNo\")) )\n{\n    flow.set(\"blackwater[0].capacity\", msg.payload);\n}\n\nif ( msg.$source.includes(flow.get(\"blackwater[1].SerialNo\")) )\n{\n    flow.set(\"blackwater[1].capacity\", msg.payload);\n}\n\nif ( msg.$source.includes(flow.get(\"fuel[0].SerialNo\")) )\n{\n    flow.set(\"fuel[0].capacity\", msg.payload);\n}\n\nreturn msg;\n\npayload.updates[0].$source",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 1040,
-        "y": 300,
+        "x": 1060,
+        "y": 420,
         "wires": [
             [
-                "859cdc3d.d2028",
-                "b451daf.9326b28"
+                "e58871e2.de06d",
+                "1778073d.373059"
             ]
         ]
     },
     {
-        "id": "c1b66747.2e1928",
+        "id": "adc95cc.cd6c7a",
         "type": "change",
-        "z": "8bdea88.abe9658",
+        "z": "cf96057a.038f88",
         "name": "freshwater",
         "rules": [
             {
@@ -467,18 +338,18 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 910,
-        "y": 140,
+        "x": 930,
+        "y": 200,
         "wires": [
             [
-                "5dc17dcb.112114"
+                "ae7c8ef5.6c48"
             ]
         ]
     },
     {
-        "id": "5dc17dcb.112114",
+        "id": "ae7c8ef5.6c48",
         "type": "change",
-        "z": "8bdea88.abe9658",
+        "z": "cf96057a.038f88",
         "name": "blackwater",
         "rules": [
             {
@@ -494,18 +365,18 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1070,
-        "y": 140,
+        "x": 1090,
+        "y": 200,
         "wires": [
             [
-                "113dfd7b.781c43"
+                "27aecf06.f55db"
             ]
         ]
     },
     {
-        "id": "113dfd7b.781c43",
+        "id": "27aecf06.f55db",
         "type": "change",
-        "z": "8bdea88.abe9658",
+        "z": "cf96057a.038f88",
         "name": "fuel",
         "rules": [
             {
@@ -521,38 +392,38 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1210,
-        "y": 140,
+        "x": 1230,
+        "y": 200,
         "wires": [
             [
-                "67aebb64.0d6db4"
+                "df82638a.273b9"
             ]
         ]
     },
     {
-        "id": "43a71117.3bdf3",
+        "id": "89787c01.cb79a",
         "type": "comment",
-        "z": "8bdea88.abe9658",
+        "z": "cf96057a.038f88",
         "name": "A branch that set up the static infomration, I set this up statically in the flow",
         "info": "",
-        "x": 1100,
-        "y": 100,
+        "x": 1120,
+        "y": 160,
         "wires": []
     },
     {
-        "id": "16f82da6.9554c2",
+        "id": "2da68707.b32008",
         "type": "comment",
-        "z": "8bdea88.abe9658",
+        "z": "cf96057a.038f88",
         "name": "This could be a switch and change block,  but I found the if statements more readable.",
         "info": "",
-        "x": 1050,
-        "y": 260,
+        "x": 1070,
+        "y": 380,
         "wires": []
     },
     {
-        "id": "7d46d949.b5f378",
+        "id": "394f3b3b.e9d574",
         "type": "debug",
-        "z": "8bdea88.abe9658",
+        "z": "cf96057a.038f88",
         "d": true,
         "name": "debug",
         "active": false,
@@ -563,14 +434,14 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1730,
-        "y": 260,
+        "x": 1750,
+        "y": 380,
         "wires": []
     },
     {
-        "id": "859cdc3d.d2028",
+        "id": "e58871e2.de06d",
         "type": "change",
-        "z": "8bdea88.abe9658",
+        "z": "cf96057a.038f88",
         "d": true,
         "name": "debug inspection of change output",
         "rules": [
@@ -587,18 +458,18 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1520,
-        "y": 260,
+        "x": 1540,
+        "y": 380,
         "wires": [
             [
-                "7d46d949.b5f378"
+                "394f3b3b.e9d574"
             ]
         ]
     },
     {
-        "id": "e4c1c855.33bd68",
+        "id": "1fecdf87.38092",
         "type": "change",
-        "z": "8bdea88.abe9658",
+        "z": "cf96057a.038f88",
         "d": true,
         "name": " inspection of initial setup",
         "rules": [
@@ -615,18 +486,18 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1530,
-        "y": 140,
+        "x": 1550,
+        "y": 200,
         "wires": [
             [
-                "d67dcdc2.fc9f4"
+                "da39e040.e02c4"
             ]
         ]
     },
     {
-        "id": "d67dcdc2.fc9f4",
+        "id": "da39e040.e02c4",
         "type": "debug",
-        "z": "8bdea88.abe9658",
+        "z": "cf96057a.038f88",
         "d": true,
         "name": "debug",
         "active": false,
@@ -637,15 +508,14 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1730,
-        "y": 140,
+        "x": 1750,
+        "y": 200,
         "wires": []
     },
     {
-        "id": "9f8633d0.3e5b9",
+        "id": "1f692fb6.597c2",
         "type": "debug",
-        "z": "8bdea88.abe9658",
-        "d": true,
+        "z": "cf96057a.038f88",
         "name": "Debug point to look at the filtered value deltas",
         "active": false,
         "tosidebar": true,
@@ -655,86 +525,83 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1600,
-        "y": 340,
+        "x": 1620,
+        "y": 460,
         "wires": []
     },
     {
-        "id": "29a80d39.b1f242",
+        "id": "5e81f82.6b7d908",
         "type": "comment",
-        "z": "8bdea88.abe9658",
+        "z": "cf96057a.038f88",
         "name": "Just ensuring the data id from my primary data path",
         "info": "",
-        "x": 210,
-        "y": 300,
+        "x": 230,
+        "y": 420,
         "wires": []
     },
     {
-        "id": "67aebb64.0d6db4",
+        "id": "df82638a.273b9",
         "type": "function",
-        "z": "8bdea88.abe9658",
+        "z": "cf96057a.038f88",
         "name": "locals",
         "func": "flow.set(\"locals.guagesRelative\",false)\nflow.set(\"locals.lastBadReading\",new Date(1970, 1, 2, 0, 0, 0, 0));\nflow.set(\"locals.lastGoodReading\",new Date(1970, 1, 2, 0, 0, 0, 0));\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 1330,
-        "y": 140,
+        "x": 1350,
+        "y": 200,
         "wires": [
             [
-                "e4c1c855.33bd68"
+                "1fecdf87.38092"
             ]
         ]
     },
     {
-        "id": "90e89d4c.91154",
+        "id": "4797733c.b32cec",
         "type": "function",
-        "z": "8bdea88.abe9658",
+        "z": "cf96057a.038f88",
         "name": "Generate Display",
-        "func": "//which tank do we want\nDisplayWaterTank=1;\n\n//copy the flow to local variables for readbility\nDisplayWaterTank--;\ntankSerialNo = flow.get(\"freshwater[\"+DisplayWaterTank.toString(10)+\"].SerialNo\")\n\nif ( !(msg.payload.updates[0].$source.includes(tankSerialNo) )){\n    //this delta isn't for this guage.  Lets terminate the flow here.\n    msg = {};\n    node.done;\n}\nelse\n{\n    //since we have the correct tank lets pull the information local to improve readabilit\n    tankCapacity = flow.get(\"freshwater[\"+DisplayWaterTank.toString(10)+\"].capacity\")\n    tankName = flow.get(\"freshwater[\"+DisplayWaterTank.toString(10)+\"].Name\")\n\n    //set some local limits for colouring the guage different colours.  This translates is arbitary\n    seg1b=0.05;\n    seg2b=0.15; \n\n    //pull the level out of the tank from the data packet.\n    tankCurrentLevel = msg.payload.updates[0].values[0].value; //current level of the tank\n\n    //label the guage with the name set up in the config run\n    msg.guageName = tankName;\n    \n    //guages relative - if l confuse you ;-)  The guages only change when there is an update so it might take\n    //5min to get the update\n    if (global.get(\"Guages_Relative\") == true)\n    {\n        msg.payload = (tankCurrentLevel*100).toFixed(0);\n        msg.unit=\"%\";\n        guage_min = 0\n        guage_max = 100\n        seg1= seg1b*guage_max;\n        seg2= seg2b*guage_max;\n    }\n    else\n    {\n        //guage absolute the capacity is converted to l,  this is where you gould pick another unit.\n        \n        //conversion=1; //you like cubig meters\n        conversion=1000; //liters in a cubic meter\n        //conversion=264.17; //us gallons in a cubic meter \n        \n        msg.payload = (tankCurrentLevel*tankCapacity*conversion).toFixed(0);\n        //msg.unit=\"m^3\";\n        msg.unit=\"l\";\n        //msg.unit=\"US Gal\";\n        guage_min = 0\n        guage_max = (tankCapacity*conversion).toFixed(0)\n        seg1= seg1b* guage_max;\n        seg2= seg2b*guage_max;\n    }\n    \n    //set th\n    msg.ui_control = {\n        \"min\":guage_min,\n        \"max\":guage_max,\n        \"seg1\":seg1,\n        \"seg2\":seg2,\n        \"options\":{\"levelColors\":[\"#b30000\", \"#e6e600\", \"#59cb3a\"]}\n    }\n    \n}\n\n\nreturn msg;",
+        "func": "//which tank do we want\nDisplayWaterTank=1;\n\n//copy the flow to local variables for readbility\nDisplayWaterTank--;\ntankSerialNo = flow.get(\"freshwater[\"+DisplayWaterTank.toString(10)+\"].SerialNo\")\n\nif ( !(msg.$source.includes(tankSerialNo) )){\n    //this delta isn't for this guage.  Lets terminate the flow here.\n    msg = {};\n    node.done;\n}\nelse\n{\n    //since we have the correct tank lets pull the information local to improve readabilit\n    tankCapacity = flow.get(\"freshwater[\"+DisplayWaterTank.toString(10)+\"].capacity\")\n    tankName = flow.get(\"freshwater[\"+DisplayWaterTank.toString(10)+\"].Name\")\n\n    //set some local limits for colouring the guage different colours.  This translates is arbitary\n    seg1b=0.05;\n    seg2b=0.15; \n\n    //pull the level out of the tank from the data packet.\n    tankCurrentLevel = msg.payload; //current level of the tank\n\n    //label the guage with the name set up in the config run\n    msg.guageName = tankName;\n    \n    //guages relative - if l confuse you ;-)  The guages only change when there is an update so it might take\n    //5min to get the update\n    if (global.get(\"Guages_Relative\") == true)\n    {\n        msg.payload = (tankCurrentLevel*100).toFixed(0);\n        msg.unit=\"%\";\n        guage_min = 0\n        guage_max = 100\n        seg1= seg1b*guage_max;\n        seg2= seg2b*guage_max;\n    }\n    else\n    {\n        //guage absolute the capacity is converted to l,  this is where you gould pick another unit.\n        \n        //conversion=1; //you like cubig meters\n        conversion=1000; //liters in a cubic meter\n        //conversion=264.17; //us gallons in a cubic meter \n        \n        msg.payload = (tankCurrentLevel*tankCapacity*conversion).toFixed(0);\n        //msg.unit=\"m^3\";\n        msg.unit=\"l\";\n        //msg.unit=\"US Gal\";\n        guage_min = 0\n        guage_max = (tankCapacity*conversion).toFixed(0)\n        seg1= seg1b* guage_max;\n        seg2= seg2b*guage_max;\n    }\n    \n    //set th\n    msg.ui_control = {\n        \"min\":guage_min,\n        \"max\":guage_max,\n        \"seg1\":seg1,\n        \"seg2\":seg2,\n        \"options\":{\"levelColors\":[\"#b30000\", \"#e6e600\", \"#59cb3a\"]}\n    }\n    \n}\n\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 1290,
-        "y": 480,
+        "x": 1310,
+        "y": 600,
         "wires": [
             [
-                "dffde80f.011018"
+                "5f6b93b6.74c0ac"
             ]
         ]
     },
     {
-        "id": "6cab1446.eebddc",
+        "id": "cec864ad.eba798",
         "type": "switch",
-        "z": "8bdea88.abe9658",
-        "d": true,
+        "z": "cf96057a.038f88",
         "name": "Debug filter",
         "property": "payload.updates[0].values[0].path",
         "propertyType": "msg",
         "rules": [
             {
-                "t": "cont",
-                "v": "blackWater",
-                "vt": "str"
+                "t": "else"
             }
         ],
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 1260,
-        "y": 220,
+        "x": 1210,
+        "y": 240,
         "wires": [
             [
-                "5f797a98.a87954"
+                "4f18d0b3.155d6"
             ]
         ]
     },
     {
-        "id": "b451daf.9326b28",
+        "id": "1778073d.373059",
         "type": "switch",
-        "z": "8bdea88.abe9658",
+        "z": "cf96057a.038f88",
         "d": true,
         "name": "Debug filter",
         "property": "payload.updates[0].values[0].path",
@@ -749,18 +616,18 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 1490,
-        "y": 300,
+        "x": 1510,
+        "y": 420,
         "wires": [
             [
-                "ddd63845.f4c618"
+                "9141b092.523e"
             ]
         ]
     },
     {
-        "id": "ddd63845.f4c618",
+        "id": "9141b092.523e",
         "type": "debug",
-        "z": "8bdea88.abe9658",
+        "z": "cf96057a.038f88",
         "d": true,
         "name": "Debug",
         "active": false,
@@ -771,123 +638,123 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1730,
-        "y": 300,
+        "x": 1750,
+        "y": 420,
         "wires": []
     },
     {
-        "id": "83537c16.c2ba4",
+        "id": "90b7cc2d.8bb9a",
         "type": "function",
-        "z": "8bdea88.abe9658",
+        "z": "cf96057a.038f88",
         "name": "Generate Display",
-        "func": "//which tank do we want\nDisplayFuelTank=1;\n\n//copy the flow to local variables for readbility\nDisplayFuelTank--;\ntankSerialNo = flow.get(\"fuel[\"+DisplayFuelTank.toString(10)+\"].SerialNo\")\n\nif ( !(msg.payload.updates[0].$source.includes(tankSerialNo) )){\n    //this delta isn't for this guage.  Lets terminate the flow here.\n    msg = {};\n    node.done;\n}\nelse\n{\n    tankCapacity = flow.get(\"fuel[\"+DisplayFuelTank.toString(10)+\"].capacity\")\n    tankName = flow.get(\"fuel[\"+DisplayFuelTank.toString(10)+\"].Name\")\n    //set some local limits for colouring the guage different colours\n    seg1b=0.05;\n    seg2b=0.15; \n    tankCurrentLevel = msg.payload.updates[0].values[0].value; //current level of the tank\n    msg.guageName = tankName;\n    if (global.get(\"Guages_Relative\") == true)\n    {\n        msg.payload = (tankCurrentLevel*100).toFixed(0);\n        msg.unit=\"%\";\n        guage_min = 0\n        guage_max = 100\n        seg1= seg1b*guage_max;\n        seg2= seg2b*guage_max;\n    }\n    else\n    {\n        msg.payload = (tankCurrentLevel*tankCapacity*1000).toFixed(0);\n        msg.unit=\"l\";\n        guage_min = 0\n        guage_max = (tankCapacity*1000).toFixed(0)\n        seg1= seg1b* guage_max;\n        seg2= seg2b*guage_max;\n    }\n    msg.ui_control = {\n        \"min\":guage_min,\n        \"max\":guage_max,\n        \"seg1\":seg1,\n        \"seg2\":seg2,\n        \"options\":{\"levelColors\":[\"#b30000\", \"#e6e600\", \"#59cb3a\"]}\n    }\n    \n}\n\n\nreturn msg;",
+        "func": "//which tank do we want\nDisplayFuelTank=1;\n\n//copy the flow to local variables for readbility\nDisplayFuelTank--;\ntankSerialNo = flow.get(\"fuel[\"+DisplayFuelTank.toString(10)+\"].SerialNo\")\n\nif ( !(msg.$source.includes(tankSerialNo) )){\n    //this delta isn't for this guage.  Lets terminate the flow here.\n    msg = {};\n    node.done;\n}\nelse\n{\n    tankCapacity = flow.get(\"fuel[\"+DisplayFuelTank.toString(10)+\"].capacity\")\n    tankName = flow.get(\"fuel[\"+DisplayFuelTank.toString(10)+\"].Name\")\n    //set some local limits for colouring the guage different colours\n    seg1b=0.05;\n    seg2b=0.15; \n    tankCurrentLevel = msg.payload; //current level of the tank\n    msg.guageName = tankName;\n    if (global.get(\"Guages_Relative\") == true)\n    {\n        msg.payload = (tankCurrentLevel*100).toFixed(0);\n        msg.unit=\"%\";\n        guage_min = 0\n        guage_max = 100\n        seg1= seg1b*guage_max;\n        seg2= seg2b*guage_max;\n    }\n    else\n    {\n        msg.payload = (tankCurrentLevel*tankCapacity*1000).toFixed(0);\n        msg.unit=\"l\";\n        guage_min = 0\n        guage_max = (tankCapacity*1000).toFixed(0)\n        seg1= seg1b* guage_max;\n        seg2= seg2b*guage_max;\n    }\n    msg.ui_control = {\n        \"min\":guage_min,\n        \"max\":guage_max,\n        \"seg1\":seg1,\n        \"seg2\":seg2,\n        \"options\":{\"levelColors\":[\"#b30000\", \"#e6e600\", \"#59cb3a\"]}\n    }\n    \n}\n\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 1290,
+        "x": 1310,
+        "y": 800,
+        "wires": [
+            [
+                "a0adb310.f6701"
+            ]
+        ]
+    },
+    {
+        "id": "3da29a79.6c2996",
+        "type": "function",
+        "z": "cf96057a.038f88",
+        "name": "Generate Display",
+        "func": "//which tank do we want\nDisplayWaterTank=2;\n\n//copy the flow to local variables for readbility\nDisplayWaterTank--;\ntankSerialNo = flow.get(\"blackwater[\"+DisplayWaterTank.toString(10)+\"].SerialNo\")\n\nif ( !(msg.$source.includes(tankSerialNo) )){\n    //this delta isn't for this guage.  Lets terminate the flow here.\n    msg = {};\n    node.done;\n}\nelse\n{\n    tankCapacity = flow.get(\"blackwater[\"+DisplayWaterTank.toString(10)+\"].capacity\")\n    tankName = flow.get(\"blackwater[\"+DisplayWaterTank.toString(10)+\"].Name\")\n    //set some local limits for colouring the guage different colours\n    seg1b=0.05;\n    seg2b=0.15; \n    tankCurrentLevel = msg.payload; //current level of the tank\n    msg.guageName = tankName;\n    if (global.get(\"Guages_Relative\") == true)\n    {\n        msg.payload = (tankCurrentLevel*100).toFixed(0);\n        msg.unit=\"%\";\n        guage_min = 0\n        guage_max = 100\n        seg1= seg1b*guage_max;\n        seg2= seg2b*guage_max;\n    }\n    else\n    {\n        msg.payload = (tankCurrentLevel*tankCapacity*1000).toFixed(0);\n        msg.unit=\"l\";\n        guage_min = 0\n        guage_max = (tankCapacity*1000).toFixed(0)\n        seg1= seg1b* guage_max;\n        seg2= seg2b*guage_max;\n    }\n    msg.ui_control = {\n        \"min\":guage_min,\n        \"max\":guage_max,\n        \"seg1\":seg1,\n        \"seg2\":seg2,\n        \"options\":{\"levelColors\":[\"#b30000\", \"#e6e600\", \"#59cb3a\"]}\n    }\n    \n}\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1310,
+        "y": 760,
+        "wires": [
+            [
+                "187c4a26.4a7e96"
+            ]
+        ]
+    },
+    {
+        "id": "38b0392c.11c3b6",
+        "type": "function",
+        "z": "cf96057a.038f88",
+        "name": "Generate Display",
+        "func": "//which tank do we want\nDisplayWaterTank=1;\n\n//copy the flow to local variables for readbility\nDisplayWaterTank--;\ntankSerialNo = flow.get(\"blackwater[\"+DisplayWaterTank.toString(10)+\"].SerialNo\")\n\nif ( !(msg.$source.includes(tankSerialNo) )){\n    //this delta isn't for this guage.  Lets terminate the flow here.\n    msg = {};\n    node.done;\n}\nelse\n{\n    tankCapacity = flow.get(\"blackwater[\"+DisplayWaterTank.toString(10)+\"].capacity\")\n    tankName = flow.get(\"blackwater[\"+DisplayWaterTank.toString(10)+\"].Name\")\n    //set some local limits for colouring the guage different colours\n    seg1b=0.33;\n    seg2b=0.66; \n    tankCurrentLevel = msg.payload; //current level of the tank\n    msg.guageName = tankName;\n    if (global.get(\"Guages_Relative\") == true)\n    {\n        msg.payload = (tankCurrentLevel*100).toFixed(0);\n        msg.unit=\"%\";\n        guage_min = 0\n        guage_max = 100\n        seg1= seg1b*guage_max;\n        seg2= seg2b*guage_max;\n    }\n    else\n    {\n        msg.payload = (tankCurrentLevel*tankCapacity*1000).toFixed(0);\n        msg.unit=\"l\";\n        guage_min = 0\n        guage_max = (tankCapacity*1000).toFixed(0)\n        seg1= seg1b* guage_max;\n        seg2= seg2b*guage_max;\n    }\n    msg.ui_control = {\n        \"min\":guage_min,\n        \"max\":guage_max,\n        \"seg1\":seg1,\n        \"seg2\":seg2,\n        \"options\":{\"levelColors\":[\"#59cb3a\", \"#e6e600\", \"#b30000\"]}\n    }\n    \n}\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1310,
+        "y": 720,
+        "wires": [
+            [
+                "309a63a1.84f35c"
+            ]
+        ]
+    },
+    {
+        "id": "1e2bcc37.54aff4",
+        "type": "function",
+        "z": "cf96057a.038f88",
+        "name": "Generate Display",
+        "func": "//which tank do we want\nDisplayWaterTank=3;\n\n//copy the flow to local variables for readbility\nDisplayWaterTank--;\ntankSerialNo = flow.get(\"freshwater[\"+DisplayWaterTank.toString(10)+\"].SerialNo\")\n\nif ( !(msg.$source.includes(tankSerialNo) )){\n    //this delta isn't for this guage.  Lets terminate the flow here.\n    msg = {};\n    node.done;\n}\nelse\n{\n    //since we have the correct tank lets pull the information local to improve readabilit\n    tankCapacity = flow.get(\"freshwater[\"+DisplayWaterTank.toString(10)+\"].capacity\")\n    tankName = flow.get(\"freshwater[\"+DisplayWaterTank.toString(10)+\"].Name\")\n\n    //set some local limits for colouring the guage different colours.  This translates is arbitary\n    seg1b=0.05;\n    seg2b=0.15; \n\n    //pull the level out of the tank from the data packet.\n    tankCurrentLevel = msg.payload; //current level of the tank\n\n    //label the guage with the name set up in the config run\n    msg.guageName = tankName;\n    \n    //guages relative - if l confuse you ;-)  The guages only change when there is an update so it might take\n    //5min to get the update\n    if (global.get(\"Guages_Relative\") == true)\n    {\n        msg.payload = (tankCurrentLevel*100).toFixed(0);\n        msg.unit=\"%\";\n        guage_min = 0\n        guage_max = 100\n        seg1= seg1b*guage_max;\n        seg2= seg2b*guage_max;\n    }\n    else\n    {\n        //guage absolute the capacity is converted to l,  this is where you gould pick another unit.\n        \n        //conversion=1; //you like cubig meters\n        conversion=1000; //liters in a cubic meter\n        //conversion=264.17; //us gallons in a cubic meter \n        \n        msg.payload = (tankCurrentLevel*tankCapacity*conversion).toFixed(0);\n        //msg.unit=\"m^3\";\n        msg.unit=\"l\";\n        //msg.unit=\"US Gal\";\n        guage_min = 0\n        guage_max = (tankCapacity*conversion).toFixed(0)\n        seg1= seg1b* guage_max;\n        seg2= seg2b*guage_max;\n    }\n    \n    //set th\n    msg.ui_control = {\n        \"min\":guage_min,\n        \"max\":guage_max,\n        \"seg1\":seg1,\n        \"seg2\":seg2,\n        \"options\":{\"levelColors\":[\"#b30000\", \"#e6e600\", \"#59cb3a\"]}\n    }\n    \n}\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 1310,
         "y": 680,
         "wires": [
             [
-                "ca82c03e.ef8aa"
+                "3a57519e.6cecbe"
             ]
         ]
     },
     {
-        "id": "c49a8c6f.afe9a",
+        "id": "2a8f1e18.ff6172",
         "type": "function",
-        "z": "8bdea88.abe9658",
+        "z": "cf96057a.038f88",
         "name": "Generate Display",
-        "func": "//which tank do we want\nDisplayWaterTank=2;\n\n//copy the flow to local variables for readbility\nDisplayWaterTank--;\ntankSerialNo = flow.get(\"blackwater[\"+DisplayWaterTank.toString(10)+\"].SerialNo\")\n\nif ( !(msg.payload.updates[0].$source.includes(tankSerialNo) )){\n    //this delta isn't for this guage.  Lets terminate the flow here.\n    msg = {};\n    node.done;\n}\nelse\n{\n    tankCapacity = flow.get(\"blackwater[\"+DisplayWaterTank.toString(10)+\"].capacity\")\n    tankName = flow.get(\"blackwater[\"+DisplayWaterTank.toString(10)+\"].Name\")\n    //set some local limits for colouring the guage different colours\n    seg1b=0.05;\n    seg2b=0.15; \n    tankCurrentLevel = msg.payload.updates[0].values[0].value; //current level of the tank\n    msg.guageName = tankName;\n    if (global.get(\"Guages_Relative\") == true)\n    {\n        msg.payload = (tankCurrentLevel*100).toFixed(0);\n        msg.unit=\"%\";\n        guage_min = 0\n        guage_max = 100\n        seg1= seg1b*guage_max;\n        seg2= seg2b*guage_max;\n    }\n    else\n    {\n        msg.payload = (tankCurrentLevel*tankCapacity*1000).toFixed(0);\n        msg.unit=\"l\";\n        guage_min = 0\n        guage_max = (tankCapacity*1000).toFixed(0)\n        seg1= seg1b* guage_max;\n        seg2= seg2b*guage_max;\n    }\n    msg.ui_control = {\n        \"min\":guage_min,\n        \"max\":guage_max,\n        \"seg1\":seg1,\n        \"seg2\":seg2,\n        \"options\":{\"levelColors\":[\"#b30000\", \"#e6e600\", \"#59cb3a\"]}\n    }\n    \n}\n\n\nreturn msg;",
+        "func": "//which tank do we want\nDisplayWaterTank=2;\n\n//copy the flow to local variables for readbility\nDisplayWaterTank--;\ntankSerialNo = flow.get(\"freshwater[\"+DisplayWaterTank.toString(10)+\"].SerialNo\")\n\nif ( !(msg.$source.includes(tankSerialNo) )){\n    //this delta isn't for this guage.  Lets terminate the flow here.\n    msg = {};\n    node.done;\n}\nelse\n{\n    //since we have the correct tank lets pull the information local to improve readabilit\n    tankCapacity = flow.get(\"freshwater[\"+DisplayWaterTank.toString(10)+\"].capacity\")\n    tankName = flow.get(\"freshwater[\"+DisplayWaterTank.toString(10)+\"].Name\")\n\n    //set some local limits for colouring the guage different colours.  This translates is arbitary\n    seg1b=0.05;\n    seg2b=0.15; \n\n    //pull the level out of the tank from the data packet.\n    tankCurrentLevel = msg.payload; //current level of the tank\n\n    //label the guage with the name set up in the config run\n    msg.guageName = tankName;\n    \n    //guages relative - if l confuse you ;-)  The guages only change when there is an update so it might take\n    //5min to get the update\n    if (global.get(\"Guages_Relative\") == true)\n    {\n        msg.payload = (tankCurrentLevel*100).toFixed(0);\n        msg.unit=\"%\";\n        guage_min = 0\n        guage_max = 100\n        seg1= seg1b*guage_max;\n        seg2= seg2b*guage_max;\n    }\n    else\n    {\n        //guage absolute the capacity is converted to l,  this is where you gould pick another unit.\n        \n        //conversion=1; //you like cubig meters\n        conversion=1000; //liters in a cubic meter\n        //conversion=264.17; //us gallons in a cubic meter \n        \n        msg.payload = (tankCurrentLevel*tankCapacity*conversion).toFixed(0);\n        //msg.unit=\"m^3\";\n        msg.unit=\"l\";\n        //msg.unit=\"US Gal\";\n        guage_min = 0\n        guage_max = (tankCapacity*conversion).toFixed(0)\n        seg1= seg1b* guage_max;\n        seg2= seg2b*guage_max;\n    }\n    \n    //set th\n    msg.ui_control = {\n        \"min\":guage_min,\n        \"max\":guage_max,\n        \"seg1\":seg1,\n        \"seg2\":seg2,\n        \"options\":{\"levelColors\":[\"#b30000\", \"#e6e600\", \"#59cb3a\"]}\n    }\n    \n}\n\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 1290,
+        "x": 1310,
         "y": 640,
         "wires": [
             [
-                "2d20ac1f.0e0234"
+                "da9784b0.77a498"
             ]
         ]
     },
     {
-        "id": "4ceab297.09683c",
+        "id": "eb3063bf.3e273",
         "type": "function",
-        "z": "8bdea88.abe9658",
-        "name": "Generate Display",
-        "func": "//which tank do we want\nDisplayWaterTank=1;\n\n//copy the flow to local variables for readbility\nDisplayWaterTank--;\ntankSerialNo = flow.get(\"blackwater[\"+DisplayWaterTank.toString(10)+\"].SerialNo\")\n\nif ( !(msg.payload.updates[0].$source.includes(tankSerialNo) )){\n    //this delta isn't for this guage.  Lets terminate the flow here.\n    msg = {};\n    node.done;\n}\nelse\n{\n    tankCapacity = flow.get(\"blackwater[\"+DisplayWaterTank.toString(10)+\"].capacity\")\n    tankName = flow.get(\"blackwater[\"+DisplayWaterTank.toString(10)+\"].Name\")\n    //set some local limits for colouring the guage different colours\n    seg1b=0.33;\n    seg2b=0.66; \n    tankCurrentLevel = msg.payload.updates[0].values[0].value; //current level of the tank\n    msg.guageName = tankName;\n    if (global.get(\"Guages_Relative\") == true)\n    {\n        msg.payload = (tankCurrentLevel*100).toFixed(0);\n        msg.unit=\"%\";\n        guage_min = 0\n        guage_max = 100\n        seg1= seg1b*guage_max;\n        seg2= seg2b*guage_max;\n    }\n    else\n    {\n        msg.payload = (tankCurrentLevel*tankCapacity*1000).toFixed(0);\n        msg.unit=\"l\";\n        guage_min = 0\n        guage_max = (tankCapacity*1000).toFixed(0)\n        seg1= seg1b* guage_max;\n        seg2= seg2b*guage_max;\n    }\n    msg.ui_control = {\n        \"min\":guage_min,\n        \"max\":guage_max,\n        \"seg1\":seg1,\n        \"seg2\":seg2,\n        \"options\":{\"levelColors\":[\"#59cb3a\", \"#e6e600\", \"#b30000\"]}\n    }\n    \n}\n\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 1290,
-        "y": 600,
-        "wires": [
-            [
-                "f8ff0076.91c38"
-            ]
-        ]
-    },
-    {
-        "id": "be397dae.f07a8",
-        "type": "function",
-        "z": "8bdea88.abe9658",
-        "name": "Generate Display",
-        "func": "//which tank do we want\nDisplayWaterTank=3;\n\n//copy the flow to local variables for readbility\nDisplayWaterTank--;\ntankSerialNo = flow.get(\"freshwater[\"+DisplayWaterTank.toString(10)+\"].SerialNo\")\n\nif ( !(msg.payload.updates[0].$source.includes(tankSerialNo) )){\n    //this delta isn't for this guage.  Lets terminate the flow here.\n    msg = {};\n    node.done;\n}\nelse\n{\n    //since we have the correct tank lets pull the information local to improve readabilit\n    tankCapacity = flow.get(\"freshwater[\"+DisplayWaterTank.toString(10)+\"].capacity\")\n    tankName = flow.get(\"freshwater[\"+DisplayWaterTank.toString(10)+\"].Name\")\n\n    //set some local limits for colouring the guage different colours.  This translates is arbitary\n    seg1b=0.05;\n    seg2b=0.15; \n\n    //pull the level out of the tank from the data packet.\n    tankCurrentLevel = msg.payload.updates[0].values[0].value; //current level of the tank\n\n    //label the guage with the name set up in the config run\n    msg.guageName = tankName;\n    \n    //guages relative - if l confuse you ;-)  The guages only change when there is an update so it might take\n    //5min to get the update\n    if (global.get(\"Guages_Relative\") == true)\n    {\n        msg.payload = (tankCurrentLevel*100).toFixed(0);\n        msg.unit=\"%\";\n        guage_min = 0\n        guage_max = 100\n        seg1= seg1b*guage_max;\n        seg2= seg2b*guage_max;\n    }\n    else\n    {\n        //guage absolute the capacity is converted to l,  this is where you gould pick another unit.\n        \n        //conversion=1; //you like cubig meters\n        conversion=1000; //liters in a cubic meter\n        //conversion=264.17; //us gallons in a cubic meter \n        \n        msg.payload = (tankCurrentLevel*tankCapacity*conversion).toFixed(0);\n        //msg.unit=\"m^3\";\n        msg.unit=\"l\";\n        //msg.unit=\"US Gal\";\n        guage_min = 0\n        guage_max = (tankCapacity*conversion).toFixed(0)\n        seg1= seg1b* guage_max;\n        seg2= seg2b*guage_max;\n    }\n    \n    //set th\n    msg.ui_control = {\n        \"min\":guage_min,\n        \"max\":guage_max,\n        \"seg1\":seg1,\n        \"seg2\":seg2,\n        \"options\":{\"levelColors\":[\"#b30000\", \"#e6e600\", \"#59cb3a\"]}\n    }\n    \n}\n\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 1290,
-        "y": 560,
-        "wires": [
-            [
-                "dac22c38.b454f"
-            ]
-        ]
-    },
-    {
-        "id": "a9e26204.5970d",
-        "type": "function",
-        "z": "8bdea88.abe9658",
-        "name": "Generate Display",
-        "func": "//which tank do we want\nDisplayWaterTank=2;\n\n//copy the flow to local variables for readbility\nDisplayWaterTank--;\ntankSerialNo = flow.get(\"freshwater[\"+DisplayWaterTank.toString(10)+\"].SerialNo\")\n\nif ( !(msg.payload.updates[0].$source.includes(tankSerialNo) )){\n    //this delta isn't for this guage.  Lets terminate the flow here.\n    msg = {};\n    node.done;\n}\nelse\n{\n    //since we have the correct tank lets pull the information local to improve readabilit\n    tankCapacity = flow.get(\"freshwater[\"+DisplayWaterTank.toString(10)+\"].capacity\")\n    tankName = flow.get(\"freshwater[\"+DisplayWaterTank.toString(10)+\"].Name\")\n\n    //set some local limits for colouring the guage different colours.  This translates is arbitary\n    seg1b=0.05;\n    seg2b=0.15; \n\n    //pull the level out of the tank from the data packet.\n    tankCurrentLevel = msg.payload.updates[0].values[0].value; //current level of the tank\n\n    //label the guage with the name set up in the config run\n    msg.guageName = tankName;\n    \n    //guages relative - if l confuse you ;-)  The guages only change when there is an update so it might take\n    //5min to get the update\n    if (global.get(\"Guages_Relative\") == true)\n    {\n        msg.payload = (tankCurrentLevel*100).toFixed(0);\n        msg.unit=\"%\";\n        guage_min = 0\n        guage_max = 100\n        seg1= seg1b*guage_max;\n        seg2= seg2b*guage_max;\n    }\n    else\n    {\n        //guage absolute the capacity is converted to l,  this is where you gould pick another unit.\n        \n        //conversion=1; //you like cubig meters\n        conversion=1000; //liters in a cubic meter\n        //conversion=264.17; //us gallons in a cubic meter \n        \n        msg.payload = (tankCurrentLevel*tankCapacity*conversion).toFixed(0);\n        //msg.unit=\"m^3\";\n        msg.unit=\"l\";\n        //msg.unit=\"US Gal\";\n        guage_min = 0\n        guage_max = (tankCapacity*conversion).toFixed(0)\n        seg1= seg1b* guage_max;\n        seg2= seg2b*guage_max;\n    }\n    \n    //set th\n    msg.ui_control = {\n        \"min\":guage_min,\n        \"max\":guage_max,\n        \"seg1\":seg1,\n        \"seg2\":seg2,\n        \"options\":{\"levelColors\":[\"#b30000\", \"#e6e600\", \"#59cb3a\"]}\n    }\n    \n}\n\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 1290,
-        "y": 520,
-        "wires": [
-            [
-                "19782ce3.c54e13"
-            ]
-        ]
-    },
-    {
-        "id": "c48b59a4.96d748",
-        "type": "function",
-        "z": "8bdea88.abe9658",
+        "z": "cf96057a.038f88",
         "name": "Check the times function - making sure readings are current",
         "func": "led_state = false; // false makes the LED red\nreading_bound = 300000; //in ms , this sets the tollerance AND lockout for bad readings.\n\n//the time of the reading\nreadingTime = flow.get(\"locals.lastGoodReading\");\n//the last bad reading\nlastBadReading = new Date(flow.get(\"locals.lastBadReading\")).getTime();\n\n//the present time acording to the node red server\n//this may drift unless all your devices are time locked. THEY ARE of course time locked.\ncurrentTime =  Date.now();\n\n//work out the time deltas\ntimeFromLastBadReading = lastBadReading - currentTime;\ntimeFromLastMeasurement = readingTime - currentTime;\n\nif ( timeFromLastBadReading <= -reading_bound){\n    \n     if ( timeFromLastMeasurement <= -reading_bound){\n         //we have a reading time out\n        led_state = false;\n        flow.set(\"locals.lastBadReading\", currentTime);\n    }\n    else\n    {\n        //all is good set the led green\n        led_state = true;\n    }\n}\nelse\n{\n   //we have seen a reading gap leave the LED on red\n    led_state = false;\n}\n\n//set the outputs\n\nmsg.payload = led_state;\n//for debug I output the time deltaa\n//msg.debug = \"Time to reading -\" + timeFromLastMeasurement.toString(10) + \"  Time to last bad reading -\" + timeFromLastBadReading.toString(10);\n\nreturn msg;\n\n\n\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 880,
-        "y": 760,
+        "x": 900,
+        "y": 880,
         "wires": [
             [
-                "7ec8a7c7.ccb4e8",
-                "17c1e6b4.b49069"
+                "4714b6f9.832118",
+                "d041d224.2d5cf"
             ]
         ]
     },
     {
-        "id": "17c1e6b4.b49069",
+        "id": "d041d224.2d5cf",
         "type": "debug",
-        "z": "8bdea88.abe9658",
+        "z": "cf96057a.038f88",
         "name": "debug",
         "active": false,
         "tosidebar": true,
@@ -897,14 +764,14 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1730,
-        "y": 800,
+        "x": 1750,
+        "y": 920,
         "wires": []
     },
     {
-        "id": "7ec8a7c7.ccb4e8",
+        "id": "4714b6f9.832118",
         "type": "ui_led",
-        "z": "8bdea88.abe9658",
+        "z": "cf96057a.038f88",
         "order": 1,
         "group": "78118053.d1a01",
         "width": 0,
@@ -928,14 +795,14 @@
         "shape": "circle",
         "showGlow": true,
         "name": "",
-        "x": 1730,
-        "y": 760,
+        "x": 1750,
+        "y": 880,
         "wires": []
     },
     {
-        "id": "b987f518.0da0a8",
+        "id": "80fe742f.d5b818",
         "type": "inject",
-        "z": "8bdea88.abe9658",
+        "z": "cf96057a.038f88",
         "name": "",
         "props": [
             {
@@ -953,18 +820,18 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 130,
-        "y": 760,
+        "x": 150,
+        "y": 880,
         "wires": [
             [
-                "c48b59a4.96d748"
+                "eb3063bf.3e273"
             ]
         ]
     },
     {
-        "id": "b163b5df.4a9298",
+        "id": "89e06e9c.8bbec",
         "type": "ui_switch",
-        "z": "8bdea88.abe9658",
+        "z": "cf96057a.038f88",
         "name": "",
         "label": "Relative?",
         "tooltip": "1",
@@ -986,34 +853,34 @@
         "officon": "",
         "offcolor": "",
         "animate": true,
-        "x": 640,
-        "y": 900,
+        "x": 660,
+        "y": 1020,
         "wires": [
             [
-                "c32754d6.e76668"
+                "41a80092.2a951"
             ]
         ]
     },
     {
-        "id": "c32754d6.e76668",
+        "id": "41a80092.2a951",
         "type": "function",
-        "z": "8bdea88.abe9658",
+        "z": "cf96057a.038f88",
         "name": "Process Buttons",
         "func": "global.set(\"Guages_Relative\",msg.payload);\n\nnode.done();\nreturn;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 840,
-        "y": 900,
+        "x": 860,
+        "y": 1020,
         "wires": [
             []
         ]
     },
     {
-        "id": "470f9204.c1ef8c",
+        "id": "77dd557f.b2e12c",
         "type": "inject",
-        "z": "8bdea88.abe9658",
+        "z": "cf96057a.038f88",
         "name": "",
         "props": [
             {
@@ -1031,38 +898,96 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 130,
-        "y": 900,
+        "x": 150,
+        "y": 1020,
         "wires": [
             [
-                "1911f400.acfadc"
+                "c368d7ea.77c968"
             ]
         ]
     },
     {
-        "id": "1911f400.acfadc",
+        "id": "c368d7ea.77c968",
         "type": "function",
-        "z": "8bdea88.abe9658",
+        "z": "cf96057a.038f88",
         "name": "Process Buttons",
         "func": "global.set(\"Guages_Relative\",false);\nglobal.set(\"Power_Guages_Relative\",false);\nmsg.ui_control = {onicon:\"check\",oncolor:\"yellow\",officon:\"close\",offcolor:\"grey\"};\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 420,
-        "y": 900,
+        "x": 440,
+        "y": 1020,
         "wires": [
             [
-                "b163b5df.4a9298"
+                "89e06e9c.8bbec"
             ]
         ]
     },
     {
-        "id": "f35e03a1.d409e",
-        "type": "websocket-client",
-        "path": "ws://192.168.1.16:80/signalk/v1/stream?subscribe=none",
-        "tls": "",
-        "wholemsg": "false"
+        "id": "c6bf03e.9402f",
+        "type": "signalk-subscribe",
+        "z": "cf96057a.038f88",
+        "name": "",
+        "mode": "sendAll",
+        "flatten": true,
+        "context": "vessels.self",
+        "path": "tanks.*",
+        "source": "",
+        "period": "6000",
+        "x": 120,
+        "y": 280,
+        "wires": [
+            [
+                "63cc2dcb.d9b554"
+            ]
+        ]
+    },
+    {
+        "id": "6cb1f8a5.adc748",
+        "type": "inject",
+        "z": "cf96057a.038f88",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 200,
+        "wires": [
+            [
+                "adc95cc.cd6c7a"
+            ]
+        ]
+    },
+    {
+        "id": "84e42de6.43255",
+        "type": "debug",
+        "z": "cf96057a.038f88",
+        "name": "debug",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1750,
+        "y": 520,
+        "wires": []
     },
     {
         "id": "5efb96f.ad0a568",
