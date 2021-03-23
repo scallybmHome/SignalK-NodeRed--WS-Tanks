@@ -53,7 +53,7 @@ _Flow_
 
 7 - The recieved the delta messages are parsed to JSONobjects and past on to (8) through the link nodes.
 
-8 - The switch reformats the json delta letters into a format is of the same form derived from the signalk-node-red plugin
+8 - The switch reformats the json delta letters into an 'identical' form to what would be derived from the signalk-node-red plugin.
 
 9 - This node filters out all the entries not coming from my Prefered NMEA interface, this is purely to reduce workload, but it is good practise.  You will likley have modified this node to get the system to work.
 
